@@ -1,5 +1,13 @@
-{ lib, stdenv, buildPythonPackage, isPyPy, fetchPypi, pytestCheckHook,
-  libffi, pkg-config, pycparser
+{ lib
+, stdenv
+, buildPythonPackage
+, isPyPy
+, fetchPypi
+, pythonAtLeast
+, pytestCheckHook
+, libffi
+, pkg-config
+, pycparser
 }:
 
 if isPyPy then null else buildPythonPackage rec {
@@ -34,6 +42,14 @@ if isPyPy then null else buildPythonPackage rec {
   doCheck = !stdenv.hostPlatform.isMusl && !(stdenv.isDarwin && stdenv.isAarch64);
 
   checkInputs = [ pytestCheckHook ];
+
+  # test_callback_exception fails with python 3.11 because of change of exception format.
+  # This will be solved in version 1.15.2
+  # see
+  # - https://foss.heptapod.net/pypy/cffi/-/merge_requests/113/diffs
+  disabledTests = lib.optionals (pythonAtLeast "3.11") [
+    "test_callback_exception"
+  ];
 
   meta = with lib; {
     maintainers = with maintainers; [ domenkozar lnl7 ];

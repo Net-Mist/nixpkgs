@@ -17,6 +17,7 @@
 , glibcLocales
 , hypothesis
 , jinja2
+, matplotlib
 , pytestCheckHook
 , pytest-xdist
 , pytest-asyncio
@@ -28,13 +29,13 @@
 
 buildPythonPackage rec {
   pname = "pandas";
-  version = "1.4.4";
+  version = "1.5.1";
   format = "setuptools";
   disabled = pythonOlder "3.8";
 
   src = fetchPypi {
     inherit pname version;
-    hash = "sha256-q2wNc4YXtnUYPl8o2zK1FItpStm7oKQMPqJtlrQx22c=";
+    hash = "sha256-JJzsXypbIglkQL2FwzEGthAuBnIgSr0tXAFBBkWYBO4=";
   };
 
   nativeBuildInputs = [ cython ];
@@ -51,6 +52,7 @@ buildPythonPackage rec {
     glibcLocales
     hypothesis
     jinja2
+    matplotlib
     pytest-asyncio
     pytest-xdist
     pytestCheckHook
@@ -75,7 +77,7 @@ buildPythonPackage rec {
     "--numprocesses" "4"
   ];
 
-  disabledTests = [
+    disabledTests = [
     # Locale-related
     "test_names"
     "test_dt_accessor_datetime_name_accessors"
