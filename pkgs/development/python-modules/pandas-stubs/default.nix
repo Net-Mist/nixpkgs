@@ -14,7 +14,7 @@
 , pythonOlder
 , scipy
 , sqlalchemy
-, tables
+# , tables
 , tabulate
 , types-pytz
 , typing-extensions
@@ -55,7 +55,7 @@ buildPythonPackage rec {
     pytestCheckHook
     scipy
     sqlalchemy
-    tables
+#     tables
     tabulate
     typing-extensions
     xarray
