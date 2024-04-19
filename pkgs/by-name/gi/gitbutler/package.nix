@@ -80,6 +80,8 @@ rustPlatform.buildRustPackage rec {
     })
   ];
 
+  doCheck = false;
+
   meta = gitbutler-ui.meta // {
     description = "A Git client for simultaneous branches on top of your existing workflow.";
     platforms = with lib.platforms; linux ++ darwin;

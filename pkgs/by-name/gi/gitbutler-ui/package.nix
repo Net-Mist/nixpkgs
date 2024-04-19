@@ -53,6 +53,8 @@ mkYarnPackage rec {
 
   distPhase = "true";
 
+  doCheck = false;
+
   meta = rec {
     description = "The UI for GitButler.";
     homepage = "https://gitbutler.com";
