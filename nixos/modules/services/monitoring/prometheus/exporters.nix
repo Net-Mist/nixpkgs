@@ -62,6 +62,7 @@ let
     "nextcloud"
     "nginx"
     "nginxlog"
+    "nvidia-gpu"
     "node"
     "nut"
     "pgbouncer"
